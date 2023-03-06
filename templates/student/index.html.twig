@@ -1,0 +1,70 @@
+<h1>
+  Student index
+</h1>
+{{ dump(students) }}
+<table border="2">
+  <thead>
+    <tr>
+      <th>
+        Nsc
+      </th>
+      <th>
+       Email
+      </th>
+      <th>
+        actions
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in students %}
+      <tr>
+        <td>
+          {{ student.nsc }}
+        </td>
+        <td>
+          {{ student.email }}
+        </td>
+        <td>
+          <a href="{{
+              path(
+                'app_student_read',
+                {
+                  nsc: student.nsc
+                }
+              )
+              }}">
+              show
+            </a> 
+           <a href="{{
+              path(
+                'app_student_modifier',
+                {
+                  nsc: student.nsc
+                }
+              )
+              }}">
+              edit
+            </a> 
+          <a href="{{
+            path(
+              'app_student_delete',
+              {
+                nsc: student.nsc
+              }
+            )
+            }}">
+            delete
+          </a>
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="3">
+          no records found
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
